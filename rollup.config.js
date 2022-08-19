@@ -7,8 +7,7 @@ export default
 	input: 'src/index.ts',
 	output:
 	{
-		dir: 'build',
-		format: 'cjs',
+		dir: 'build'
 	},
 	plugins:
 	[
