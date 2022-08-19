@@ -1,0 +1,19 @@
+{
+	"compilerOptions":
+	{
+		"outDir": "build",
+		"target": "es2015",
+		"module": "esnext",
+		"moduleResolution": "node",
+		"declaration": true
+	},
+	"include":
+	[
+		"src",
+		"package.json"
+	],
+	"exclude":
+	[
+		"node_modules"
+	]
+}

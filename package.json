@@ -1,0 +1,56 @@
+{
+	"name": "rxjs-collection",
+	"description": "RXJS enhanced Map, WeakMap, Set and WeakSet implementation",
+	"version": "1.0.0-alpha.1",
+	"license": "MIT",
+	"type": "module",
+	"keywords":
+	[
+		"rxjs",
+		"map",
+		"weakmap",
+		"set",
+		"weakset"
+	],
+	"author":
+	{
+		"name": "Henry Ruhs",
+		"url": "https://henryruhs.com"
+	},
+	"bugs":
+	{
+		"url": "https://github.com/henryruhs/rxjs-collection/issues"
+	},
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/henryruhs/rxjs-collection.git"
+	},
+	"peerDependencies":
+	{
+		"rxjs": "^7"
+	},
+	"devDependencies":
+	{
+		"rxjs": "^7",
+		"@isnotdefined/eslint-config": "6.0.0",
+		"@types/chai": "4.3.1",
+		"@types/mocha": "9.1.1",
+		"@types/node": "18.0.0",
+		"chai": "4.3.6",
+		"cpy-cli": "4.1.0",
+		"del-cli": "4.0.1",
+		"eslint": "8.18.0",
+		"mocha": "10.0.0",
+		"ts-node": "10.8.1"
+	},
+	"scripts":
+	{
+		"prebuild": "del build",
+		"build": "tsc",
+		"postbuild": "cpy README.md build",
+		"lint": "eslint src tests --ext=.ts",
+		"fix": "npm run lint -- --fix",
+		"test": "mocha"
+	}
+}
