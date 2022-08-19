@@ -13,7 +13,7 @@ describe('reactive map', () =>
 
 	it('create instance from map', () =>
 	{
-		const map : Map<number, number> = new Map<number, number>([[ 1, 1 ]]);
+		const map : Map<number, number> = new Map<number, number>([ [ 1, 1 ] ]);
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>(map);
 
 		expect(reactiveMap).to.be.instanceof(ReactiveMap);
