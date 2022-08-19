@@ -1,7 +1,7 @@
 {
 	"name": "rxjs-collection",
 	"description": "RXJS enhanced Map, WeakMap, Set and WeakSet implementation",
-	"version": "1.0.0-alpha.1",
+	"version": "1.0.0-alpha.2",
 	"license": "MIT",
 	"type": "module",
 	"keywords":
@@ -34,22 +34,22 @@
 	{
 		"rxjs": "^7",
 		"@isnotdefined/eslint-config": "6.0.0",
+		"@rollup/plugin-typescript": "8.3.4",
 		"@types/chai": "4.3.1",
 		"@types/mocha": "9.1.1",
 		"@types/node": "18.0.0",
 		"chai": "4.3.6",
-		"cpy-cli": "4.1.0",
-		"del-cli": "4.0.1",
 		"eslint": "8.18.0",
 		"mocha": "10.0.0",
+		"rollup": "2.78.1",
+		"rollup-plugin-copy": "3.4.0",
+		"rollup-plugin-delete": "2.0.0",
 		"ts-node": "10.8.1",
 		"typescript": "4.7.4"
 	},
 	"scripts":
 	{
-		"prebuild": "del build",
-		"build": "tsc",
-		"postbuild": "cpy README.md build",
+		"build": "rollup --config=rollup.config.js",
 		"lint": "eslint src tests --ext=.ts",
 		"fix": "npm run lint -- --fix",
 		"test": "mocha"
