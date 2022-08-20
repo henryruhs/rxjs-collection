@@ -19,4 +19,12 @@ describe('reactive map', () =>
 		expect(reactiveMap).to.be.instanceof(ReactiveMap);
 		expect(reactiveMap.size).to.be.equal(1);
 	});
+
+	it('reactive set', done =>
+	{
+		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
+
+		reactiveMap.asObservable().subscribe(reactiveMap => reactiveMap.get(1) ? done() : null);
+		reactiveMap.set(1, 1);
+	});
 });

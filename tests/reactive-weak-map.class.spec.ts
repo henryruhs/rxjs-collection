@@ -9,4 +9,12 @@ describe('reactive weak map', () =>
 
 		expect(reactiveWeakMap).to.be.instanceof(ReactiveWeakMap);
 	});
+
+	it.skip('reactive set', done =>
+	{
+		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>();
+
+		reactiveWeakMap.asObservable().subscribe(reactiveWeakMap => reactiveWeakMap.get({}) ? done() : null);
+		reactiveWeakMap.set({}, 1);
+	});
 });
