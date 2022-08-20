@@ -24,7 +24,15 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-		reactiveMap.asObservable().subscribe(reactiveMap => reactiveMap.get(1) ? done() : null);
+		reactiveMap.subscribe(reactiveMap =>
+		{
+			const value : number = reactiveMap.get(1);
+
+			if (value === 1)
+			{
+				done();
+			}
+		});
 		reactiveMap.set(1, 1);
 	});
 });
