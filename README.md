@@ -27,7 +27,7 @@ import { ReactiveMap } from 'rxjs-collection';
 
 const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-// subscribe to a mutations
+// subscribe to mutations
 reactiveMap.asObservable().subscribe(map => map.has(1));
 reactiveMap.subscribe(map => map.has(1));
 
