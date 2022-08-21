@@ -1,20 +1,9 @@
 import { Observable, Subject, Subscription } from 'rxjs';
+import { reactivate } from './reactive.helper';
 
 export class ReactiveMap<Key, Value> extends Map<Key, Value>
 {
 	protected store : Subject<Map<Key, Value>> = new Subject<Map<Key, Value>>();
-	protected mutableMethods : string[] =
-		[
-			'set',
-			'delete',
-			'clear'
-		];
-
-	constructor(entries ?: Iterable<[Key, Value]>)
-	{
-		super(entries);
-		this.init();
-	}
 
 	asObservable() : Observable<Map<Key, Value>>
 	{
@@ -30,17 +19,11 @@ export class ReactiveMap<Key, Value> extends Map<Key, Value>
 	{
 		this.store.complete();
 	}
-
-	protected init() : void
-	{
-		this.store.next(this);
-		this.mutableMethods.map(mutableMethod =>
-		{
-			this[mutableMethod] = (...args) =>
-			{
-				(super[mutableMethod] as Function).apply(this, args);
-				this.store.next(this);
-			};
-		});
-	}
 }
+
+reactivate(ReactiveMap, Map,
+[
+	'set',
+	'delete',
+	'clear'
+]);
