@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Value>
 {
@@ -13,6 +13,11 @@ export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Val
 	{
 		super(entries);
 		this.init();
+	}
+
+	asObservable() : Observable<WeakMap<Key, Value>>
+	{
+		return this.store.asObservable();
 	}
 
 	subscribe(next : (value : WeakMap<Key, Value>) => void) : Subscription

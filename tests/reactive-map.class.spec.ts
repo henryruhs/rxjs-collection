@@ -36,7 +36,7 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-		reactiveMap.subscribe(() => done('error'));
+		reactiveMap.asObservable().subscribe(() => done('error'));
 		reactiveMap.unsubscribe();
 		reactiveMap.set(1, 1);
 		timer(100).subscribe(done);

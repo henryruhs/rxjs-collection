@@ -36,7 +36,7 @@ describe('reactive set', () =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>();
 
-		reactiveSet.subscribe(() => done('error'));
+		reactiveSet.asObservable().subscribe(() => done('error'));
 		reactiveSet.unsubscribe();
 		reactiveSet.add(1);
 		timer(100).subscribe(done);

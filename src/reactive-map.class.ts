@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 export class ReactiveMap<Key, Value> extends Map<Key, Value>
 {
@@ -14,6 +14,11 @@ export class ReactiveMap<Key, Value> extends Map<Key, Value>
 	{
 		super(entries);
 		this.init();
+	}
+
+	asObservable() : Observable<Map<Key, Value>>
+	{
+		return this.store.asObservable();
 	}
 
 	subscribe(next : (value : Map<Key, Value>) => void) : Subscription

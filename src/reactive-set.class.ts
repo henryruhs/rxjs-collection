@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 export class ReactiveSet<Type> extends Set<Type>
 {
@@ -14,6 +14,11 @@ export class ReactiveSet<Type> extends Set<Type>
 	{
 		super(entries);
 		this.init();
+	}
+
+	asObservable() : Observable<Set<Type>>
+	{
+		return this.store.asObservable();
 	}
 
 	subscribe(next : (value : Set<Type>) => void) : Subscription

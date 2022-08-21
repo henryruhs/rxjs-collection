@@ -39,7 +39,7 @@ describe('reactive weak map', () =>
 		const object : object = {};
 		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>();
 
-		reactiveWeakMap.subscribe(() => done('error'));
+		reactiveWeakMap.asObservable().subscribe(() => done('error'));
 		reactiveWeakMap.unsubscribe();
 		reactiveWeakMap.set(object, 1);
 		timer(100).subscribe(done);

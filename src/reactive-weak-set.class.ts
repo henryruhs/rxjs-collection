@@ -1,4 +1,4 @@
-import { Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 
 export class ReactiveWeakSet<Type extends object> extends WeakSet<Type>
 {
@@ -13,6 +13,11 @@ export class ReactiveWeakSet<Type extends object> extends WeakSet<Type>
 	{
 		super(entries);
 		this.init();
+	}
+
+	asObservable() : Observable<WeakSet<Type>>
+	{
+		return this.store.asObservable();
 	}
 
 	subscribe(next : (value : WeakSet<Type>) => void) : Subscription

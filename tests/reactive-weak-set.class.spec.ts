@@ -39,7 +39,7 @@ describe('reactive weak set', () =>
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>();
 
-		reactiveWeakSet.subscribe(() => done('error'));
+		reactiveWeakSet.asObservable().subscribe(() => done('error'));
 		reactiveWeakSet.unsubscribe();
 		reactiveWeakSet.add(object);
 		timer(100).subscribe(done);
