@@ -12,7 +12,7 @@ describe('reactive set', () =>
 
 	it('create instance from iterable', () =>
 	{
-		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([1]);
+		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
 		expect(reactiveSet.has(1)).to.be.true;
 	});
