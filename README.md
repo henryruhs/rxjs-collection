@@ -15,3 +15,14 @@ Installation
 ```
 npm install rxjs-collection
 ```
+
+
+Usage
+-----
+
+```typescript
+const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
+
+reactiveMap.subscribe(map => console.log(map.has(1)));
+reactiveMap.set(1, 1);
+```

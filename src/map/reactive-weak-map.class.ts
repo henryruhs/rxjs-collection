@@ -1,46 +1,40 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 
-export class ReactiveWeakMap<Key extends object, Value> implements Pick<WeakMap<Key, Value>, 'has' | 'get' | 'set' | 'delete'>
+export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Value>
 {
-	protected weakMap : BehaviorSubject<WeakMap<Key, Value>>;
+	protected store : BehaviorSubject<WeakMap<Key, Value>> = new BehaviorSubject<WeakMap<Key, Value>>(this);
+	protected mutableMethods : string[] =
+		[
+			'set',
+			'delete'
+		];
 
 	constructor(entries ?: Iterable<[Key, Value]>)
 	{
-		this.weakMap = new BehaviorSubject<WeakMap<Key, Value>>(new WeakMap<Key, Value>(entries));
+		super(entries);
+		this.init();
 	}
 
-	has(key : Key) : boolean
+	subscribe(next : (value : WeakMap<Key, Value>) => void) : Subscription
 	{
-		return this.asWeakMap().has(key);
+		return this.store.subscribe(next);
 	}
 
-	get(key : Key) : Value
+	unsubscribe() : void
 	{
-		return this.asWeakMap().get(key);
+		this.store.complete();
+		this.store.unsubscribe();
 	}
 
-	set(key : Key, value : Value) : WeakMap<Key, Value>
+	protected init() : void
 	{
-		this.weakMap.next(this.asWeakMap().set(key, value));
-		return this.asWeakMap();
-	}
-
-	delete(key : Key) : boolean
-	{
-		const weakMap : WeakMap<Key, Value> = this.asWeakMap();
-		const status : boolean = weakMap.delete(key);
-
-		this.weakMap.next(weakMap);
-		return status;
-	}
-
-	asWeakMap() : WeakMap<Key, Value>
-	{
-		return this.weakMap.getValue();
-	}
-
-	asObservable() : Observable<WeakMap<Key, Value>>
-	{
-		return this.weakMap.asObservable();
+		this.mutableMethods.map(mutableMethod =>
+		{
+			this[mutableMethod] = (...args) =>
+			{
+				(super[mutableMethod] as Function).apply(this, args);
+				this.store.next(this);
+			};
+		});
 	}
 }

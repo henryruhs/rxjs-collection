@@ -7,28 +7,25 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-		expect(reactiveMap).to.be.instanceof(ReactiveMap);
+		expect(reactiveMap).to.be.instanceof(Map);
 		expect(reactiveMap.size).to.be.equal(0);
 	});
 
-	it('create instance from map', () =>
+	it('create instance from iterable', () =>
 	{
-		const map : Map<number, number> = new Map<number, number>([ [ 1, 1 ] ]);
-		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>(map);
+		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 
-		expect(reactiveMap).to.be.instanceof(ReactiveMap);
-		expect(reactiveMap.size).to.be.equal(1);
+		expect(reactiveMap).to.be.instanceof(Map);
+		expect(reactiveMap.has(1)).to.be.true
 	});
 
 	it('reactive set', done =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-		reactiveMap.subscribe(reactiveMap =>
+		reactiveMap.subscribe(map =>
 		{
-			const value : number = reactiveMap.get(1);
-
-			if (value === 1)
+			if (map.get(1) === 1)
 			{
 				done();
 			}
