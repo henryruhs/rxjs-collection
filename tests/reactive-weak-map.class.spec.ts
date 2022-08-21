@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import {ReactiveMap, ReactiveWeakMap} from '../src';
+import { ReactiveWeakMap } from '../src';
 
 describe('reactive weak map', () =>
 {
@@ -15,11 +15,10 @@ describe('reactive weak map', () =>
 		const object : object = {};
 		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>([ [ object, 1 ] ]);
 
-		expect(reactiveWeakMap).to.be.instanceof(WeakMap);
 		expect(reactiveWeakMap.has(object)).to.be.true;
 	});
 
-	it('reactive set', done =>
+	it('mutable set', done =>
 	{
 		const object : object = {};
 		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>();
