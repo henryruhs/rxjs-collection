@@ -1,3 +1,4 @@
+import { timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveWeakMap } from '../src';
 
@@ -31,5 +32,16 @@ describe('reactive weak map', () =>
 			}
 		});
 		reactiveWeakMap.set(object, 1);
+	});
+
+	it('unsubscribe is working', done =>
+	{
+		const object : object = {};
+		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>();
+
+		reactiveWeakMap.subscribe(() => done('error'));
+		reactiveWeakMap.unsubscribe();
+		reactiveWeakMap.set(object, 1);
+		timer(100).subscribe(done);
 	});
 });

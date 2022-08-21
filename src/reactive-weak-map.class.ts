@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Value>
 {
-	protected store : BehaviorSubject<WeakMap<Key, Value>> = new BehaviorSubject<WeakMap<Key, Value>>(this);
+	protected store : Subject<WeakMap<Key, Value>> = new Subject<WeakMap<Key, Value>>();
 	protected mutableMethods : string[] =
 		[
 			'set',
@@ -23,11 +23,11 @@ export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Val
 	unsubscribe() : void
 	{
 		this.store.complete();
-		this.store.unsubscribe();
 	}
 
 	protected init() : void
 	{
+		this.store.next(this);
 		this.mutableMethods.map(mutableMethod =>
 		{
 			this[mutableMethod] = (...args) =>

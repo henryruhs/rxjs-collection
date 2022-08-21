@@ -1,3 +1,4 @@
+import { timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveWeakSet } from '../src';
 
@@ -31,5 +32,16 @@ describe('reactive weak set', () =>
 			}
 		});
 		reactiveWeakSet.add(object);
+	});
+
+	it('unsubscribe is working', done =>
+	{
+		const object : object = {};
+		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>();
+
+		reactiveWeakSet.subscribe(() => done('error'));
+		reactiveWeakSet.unsubscribe();
+		reactiveWeakSet.add(object);
+		timer(100).subscribe(done);
 	});
 });

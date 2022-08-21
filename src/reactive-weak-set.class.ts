@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 export class ReactiveWeakSet<Type extends object> extends WeakSet<Type>
 {
-	protected store : BehaviorSubject<WeakSet<Type>> = new BehaviorSubject<WeakSet<Type>>(this);
+	protected store : Subject<WeakSet<Type>> = new Subject<WeakSet<Type>>();
 	protected mutableMethods : string[] =
 		[
 			'add',
@@ -23,11 +23,11 @@ export class ReactiveWeakSet<Type extends object> extends WeakSet<Type>
 	unsubscribe() : void
 	{
 		this.store.complete();
-		this.store.unsubscribe();
 	}
 
 	protected init() : void
 	{
+		this.store.next(this);
 		this.mutableMethods.map(mutableMethod =>
 		{
 			this[mutableMethod] = (...args) =>

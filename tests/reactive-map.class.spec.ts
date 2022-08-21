@@ -1,3 +1,4 @@
+import { timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveMap } from '../src';
 
@@ -29,5 +30,15 @@ describe('reactive map', () =>
 			}
 		});
 		reactiveMap.set(1, 1);
+	});
+
+	it('unsubscribe is working', done =>
+	{
+		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
+
+		reactiveMap.subscribe(() => done('error'));
+		reactiveMap.unsubscribe();
+		reactiveMap.set(1, 1);
+		timer(100).subscribe(done);
 	});
 });

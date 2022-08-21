@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 export class ReactiveMap<Key, Value> extends Map<Key, Value>
 {
-	protected store : BehaviorSubject<Map<Key, Value>> = new BehaviorSubject<Map<Key, Value>>(this);
+	protected store : Subject<Map<Key, Value>> = new Subject<Map<Key, Value>>();
 	protected mutableMethods : string[] =
 		[
 			'set',
@@ -24,11 +24,11 @@ export class ReactiveMap<Key, Value> extends Map<Key, Value>
 	unsubscribe() : void
 	{
 		this.store.complete();
-		this.store.unsubscribe();
 	}
 
 	protected init() : void
 	{
+		this.store.next(this);
 		this.mutableMethods.map(mutableMethod =>
 		{
 			this[mutableMethod] = (...args) =>

@@ -1,8 +1,8 @@
-import { BehaviorSubject, Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 export class ReactiveSet<Type> extends Set<Type>
 {
-	protected store : BehaviorSubject<Set<Type>> = new BehaviorSubject<Set<Type>>(this);
+	protected store : Subject<Set<Type>> = new Subject<Set<Type>>();
 	protected mutableMethods : string[] =
 		[
 			'add',
@@ -24,11 +24,11 @@ export class ReactiveSet<Type> extends Set<Type>
 	unsubscribe() : void
 	{
 		this.store.complete();
-		this.store.unsubscribe();
 	}
 
 	protected init() : void
 	{
+		this.store.next(this);
 		this.mutableMethods.map(mutableMethod =>
 		{
 			this[mutableMethod] = (...args) =>
