@@ -4,17 +4,11 @@ import { ReactiveSet } from '../src';
 
 describe('reactive set', () =>
 {
-	it('create instance', () =>
-	{
-		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>();
-
-		expect(reactiveSet).to.be.instanceof(Set);
-	});
-
-	it('create instance from iterable', () =>
+	it('create native instance', () =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
+		expect(reactiveSet).to.be.instanceof(Set);
 		expect(reactiveSet.has(1)).to.be.true;
 	});
 

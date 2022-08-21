@@ -4,17 +4,11 @@ import { ReactiveMap } from '../src';
 
 describe('reactive map', () =>
 {
-	it('create instance', () =>
-	{
-		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
-
-		expect(reactiveMap).to.be.instanceof(Map);
-	});
-
-	it('create instance from iterable', () =>
+	it('create native instance', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 
+		expect(reactiveMap).to.be.instanceof(Map);
 		expect(reactiveMap.has(1)).to.be.true;
 	});
 

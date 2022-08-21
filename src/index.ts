@@ -1,3 +1,4 @@
+export { ReactiveArray } from './reactive-array.class';
 export { ReactiveMap } from './reactive-map.class';
 export { ReactiveSet } from './reactive-set.class';
 export { ReactiveWeakMap } from './reactive-weak-map.class';

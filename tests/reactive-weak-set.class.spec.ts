@@ -4,18 +4,12 @@ import { ReactiveWeakSet } from '../src';
 
 describe('reactive weak set', () =>
 {
-	it('create instance', () =>
-	{
-		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>();
-
-		expect(reactiveWeakSet).to.be.instanceof(WeakSet);
-	});
-
-	it('create instance from iterable', () =>
+	it('create native instance', () =>
 	{
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>([ object ]);
 
+		expect(reactiveWeakSet).to.be.instanceof(WeakSet);
 		expect(reactiveWeakSet.has(object)).to.be.true;
 	});
 
