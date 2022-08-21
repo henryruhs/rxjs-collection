@@ -1,7 +1,7 @@
 RXJS Collection
 ===============
 
-> RXJS enhanced Array, Map, WeakMap, Set and WeakSet implementation.
+> RXJS enhanced Array, Map, WeakMap, Set and WeakSet.
 
 [![Build Status](https://img.shields.io/github/workflow/status/henryruhs/rxjs-collection/ci.svg)](https://github.com/henryruhs/rxjs-collection/actions?query=workflow:ci)
 [![Coverage Status](https://coveralls.io/repos/github/henryruhs/rxjs-collection/badge.svg)](https://coveralls.io/github/henryruhs/rxjs-collection)
@@ -20,13 +20,26 @@ npm install rxjs-collection
 Usage
 -----
 
-`Reactive{Array,Map,WeakMap,Set,WeakSet}` are enhanced by `asObservable()` and `{un}subscribe()` methods:
+Each collection has been enhanced with `asObservable` and `{un}subscribe` alike methods:
 
 ```typescript
+import { ReactiveMap } from 'rxjs-collection';
+
 const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
+// subscribe to a mutations
 reactiveMap.asObservable().subscribe(map => map.has(1));
 reactiveMap.subscribe(map => map.has(1));
+
+// mutate the collection
 reactiveMap.set(1, 1);
+
+// unsubscribe from mutations
 reactiveMap.unsubscribe();
 ```
+
+
+Documentation
+-------------
+
+Read the [documenation](https://henryruhs.gitbook.io/rxjs-collection) for a deep dive.

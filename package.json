@@ -1,6 +1,6 @@
 {
 	"name": "rxjs-collection",
-	"description": "RXJS enhanced Array, Map, WeakMap, Set and WeakSet implementation",
+	"description": "RXJS enhanced Array, Map, WeakMap, Set and WeakSet",
 	"version": "1.0.0-alpha.6",
 	"license": "MIT",
 	"type": "module",
