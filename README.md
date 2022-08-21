@@ -20,7 +20,7 @@ npm install rxjs-collection
 Usage
 -----
 
-`Reactive{Map,WeakMap,Set,WeakSet}` are enhanced by `asObservable()`, `subscribe()` and `unsubscribe()`:
+`Reactive{Map,WeakMap,Set,WeakSet}` are enhanced by `asObservable()` and `{un}subscribe()` methods:
 
 ```typescript
 const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
