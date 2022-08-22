@@ -1,7 +1,8 @@
 import { Observable, Subject, Subscription } from 'rxjs';
 import { reactivate } from './reactive.helper';
+import { ReactiveCollection } from './reactive.interface';
 
-export class ReactiveSet<Type> extends Set<Type>
+export class ReactiveSet<Type> extends Set<Type> implements ReactiveCollection<Set<Type>>
 {
 	protected store : Subject<Set<Type>> = new Subject<Set<Type>>();
 

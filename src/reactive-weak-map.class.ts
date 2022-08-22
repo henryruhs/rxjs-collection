@@ -1,7 +1,8 @@
 import { Observable, Subject, Subscription } from 'rxjs';
 import { reactivate } from './reactive.helper';
+import { ReactiveCollection } from './reactive.interface';
 
-export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Value>
+export class ReactiveWeakMap<Key extends object, Value> extends WeakMap<Key, Value> implements ReactiveCollection<WeakMap<Key, Value>>
 {
 	protected store : Subject<WeakMap<Key, Value>> = new Subject<WeakMap<Key, Value>>();
 

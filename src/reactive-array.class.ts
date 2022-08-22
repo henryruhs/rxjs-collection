@@ -1,7 +1,8 @@
 import { Observable, Subject, Subscription } from 'rxjs';
 import { reactivate } from './reactive.helper';
+import { ReactiveCollection } from './reactive.interface';
 
-export class ReactiveArray<Type> extends Array<Type>
+export class ReactiveArray<Type> extends Array<Type> implements ReactiveCollection<Array<Type>>
 {
 	protected store : Subject<Array<Type>> = new Subject<Array<Type>>();
 

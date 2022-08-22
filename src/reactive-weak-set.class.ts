@@ -1,7 +1,8 @@
 import { Observable, Subject, Subscription } from 'rxjs';
 import { reactivate } from './reactive.helper';
+import { ReactiveCollection } from './reactive.interface';
 
-export class ReactiveWeakSet<Type extends object> extends WeakSet<Type>
+export class ReactiveWeakSet<Type extends object> extends WeakSet<Type> implements ReactiveCollection<WeakSet<Type>>
 {
 	protected store : Subject<WeakSet<Type>> = new Subject<WeakSet<Type>>();
 
