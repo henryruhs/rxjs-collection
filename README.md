@@ -23,6 +23,8 @@ Usage
 Each collection has been enhanced with `asObservable` and `{un}subscribe` alike methods:
 
 ```typescript
+import { ReactiveMap } from 'rxjs-collection';
+
 const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
 // subscribe to mutations
