@@ -26,6 +26,34 @@ describe('reactive set', () =>
 		reactiveSet.add(1);
 	});
 
+	it('mutable delete', done =>
+	{
+		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
+
+		reactiveSet.subscribe(set =>
+		{
+			if (!set.has(1))
+			{
+				done();
+			}
+		});
+		reactiveSet.delete(1);
+	});
+
+	it('mutable clear', done =>
+	{
+		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
+
+		reactiveSet.subscribe(set =>
+		{
+			if (!set.has(1))
+			{
+				done();
+			}
+		});
+		reactiveSet.clear();
+	});
+
 	it('unsubscribe is working', done =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>();

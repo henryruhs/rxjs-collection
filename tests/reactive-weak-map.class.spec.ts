@@ -28,6 +28,21 @@ describe('reactive weak map', () =>
 		reactiveWeakMap.set(object, 1);
 	});
 
+	it('mutable delete', done =>
+	{
+		const object : object = {};
+		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>([ [ object, 1 ] ]);
+
+		reactiveWeakMap.subscribe(weakMap =>
+		{
+			if (!weakMap.has(object))
+			{
+				done();
+			}
+		});
+		reactiveWeakMap.delete(object);
+	});
+
 	it('unsubscribe is working', done =>
 	{
 		const object : object = {};

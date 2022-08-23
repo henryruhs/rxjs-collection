@@ -28,6 +28,21 @@ describe('reactive weak set', () =>
 		reactiveWeakSet.add(object);
 	});
 
+	it('mutable delete', done =>
+	{
+		const object : object = {};
+		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>([ object ]);
+
+		reactiveWeakSet.subscribe(weakSet =>
+		{
+			if (!weakSet.has(object))
+			{
+				done();
+			}
+		});
+		reactiveWeakSet.delete(object);
+	});
+
 	it('unsubscribe is working', done =>
 	{
 		const object : object = {};

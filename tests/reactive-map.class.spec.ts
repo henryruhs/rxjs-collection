@@ -26,6 +26,34 @@ describe('reactive map', () =>
 		reactiveMap.set(1, 1);
 	});
 
+	it('mutable delete', done =>
+	{
+		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
+
+		reactiveMap.subscribe(map =>
+		{
+			if (!map.has(1))
+			{
+				done();
+			}
+		});
+		reactiveMap.delete(1);
+	});
+
+	it('mutable clear', done =>
+	{
+		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
+
+		reactiveMap.subscribe(map =>
+		{
+			if (!map.has(1))
+			{
+				done();
+			}
+		});
+		reactiveMap.clear();
+	});
+
 	it('unsubscribe is working', done =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
