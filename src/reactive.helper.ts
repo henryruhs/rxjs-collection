@@ -1,4 +1,4 @@
-import { WithSubject } from './reactive.interface';
+import { FunctionWithStore } from './reactive.interface';
 
 export function reactive(Reactive : Function, Base : Function, methods : string[]) : void
 {
@@ -7,7 +7,7 @@ export function reactive(Reactive : Function, Base : Function, methods : string[
 		(Reactive as FunctionConstructor).prototype[method] = function(...args : string[])
 		{
 			((Base as FunctionConstructor).prototype[method] as Function).apply(this, args);
-			(this as WithSubject).store?.next(this);
+			(this as FunctionWithStore).store?.next(this);
 		};
 	});
 }
@@ -20,14 +20,14 @@ export function hyperactive<Collection extends object>(collection : Collection) 
 		{
 			const action : boolean = Reflect.defineProperty(that, property, value);
 
-			(that as WithSubject).store?.next(that as Function);
+			(that as FunctionWithStore).store?.next(that as Function);
 			return action;
 		},
 		deleteProperty(that : Collection, property : string | symbol) : boolean
 		{
 			const action : boolean = Reflect.deleteProperty(that, property);
 
-			(that as WithSubject).store?.next(that as Function);
+			(that as FunctionWithStore).store?.next(that as Function);
 			return action;
 		}
 	});

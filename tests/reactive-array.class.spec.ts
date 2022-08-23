@@ -40,7 +40,7 @@ describe('reactive array', () =>
 		delete reactiveArray[0];
 	});
 
-	it('hyperactive push', done =>
+	it('hyperactive push is calm', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>());
 

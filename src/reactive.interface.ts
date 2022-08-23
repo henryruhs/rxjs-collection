@@ -7,7 +7,7 @@ export interface ReactiveCollection<Collection>
 	unsubscribe() : void;
 }
 
-export interface WithSubject
+export interface FunctionWithStore extends Function
 {
 	store : Subject<Function>
 }
