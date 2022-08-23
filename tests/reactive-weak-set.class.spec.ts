@@ -13,7 +13,7 @@ describe('reactive weak set', () =>
 		expect(reactiveWeakSet.has(object)).to.be.true;
 	});
 
-	it('mutable add', done =>
+	it('reactive add', done =>
 	{
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>();
@@ -28,7 +28,7 @@ describe('reactive weak set', () =>
 		reactiveWeakSet.add(object);
 	});
 
-	it('mutable delete', done =>
+	it('reactive delete', done =>
 	{
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>([ object ]);

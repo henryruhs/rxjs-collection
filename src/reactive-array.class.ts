@@ -1,5 +1,5 @@
-import { Observable, Subject, Subscription } from 'rxjs';
-import { reactivate } from './reactive.helper';
+import { Observable, Subject, Subscription, debounceTime } from 'rxjs';
+import { reactive } from './reactive.helper';
 import { ReactiveCollection } from './reactive.interface';
 
 export class ReactiveArray<Type> extends Array<Type> implements ReactiveCollection<Array<Type>>
@@ -8,12 +8,12 @@ export class ReactiveArray<Type> extends Array<Type> implements ReactiveCollecti
 
 	asObservable() : Observable<Array<Type>>
 	{
-		return this.store.asObservable();
+		return this.store.asObservable().pipe(debounceTime(0));
 	}
 
 	subscribe(next : (value : Array<Type>) => void) : Subscription
 	{
-		return this.store.subscribe(next);
+		return this.store.pipe(debounceTime(0)).subscribe(next);
 	}
 
 	unsubscribe() : void
@@ -22,7 +22,7 @@ export class ReactiveArray<Type> extends Array<Type> implements ReactiveCollecti
 	}
 }
 
-reactivate(ReactiveArray, Array,
+reactive(ReactiveArray, Array,
 [
 	'copyWithin',
 	'fill',

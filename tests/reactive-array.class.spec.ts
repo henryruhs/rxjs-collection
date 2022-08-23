@@ -1,6 +1,6 @@
 import { timer } from 'rxjs';
 import { expect } from 'chai';
-import { ReactiveArray } from '../src';
+import { ReactiveArray, hyperactive } from '../src';
 
 describe('reactive array', () =>
 {
@@ -12,7 +12,49 @@ describe('reactive array', () =>
 		expect(reactiveArray[0]).to.be.equal(1);
 	});
 
-	it('mutable copy within', done =>
+	it('hyperactive define property', done =>
+	{
+		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>());
+
+		reactiveArray.subscribe(array =>
+		{
+			if (array[0] === 1)
+			{
+				done();
+			}
+		});
+		reactiveArray[0] = 1;
+	});
+
+	it('hyperactive delete property', done =>
+	{
+		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>(1, 2, 3));
+
+		reactiveArray.subscribe(array =>
+		{
+			if (!array[0])
+			{
+				done();
+			}
+		});
+		delete reactiveArray[0];
+	});
+
+	it('hyperactive push', done =>
+	{
+		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>());
+
+		reactiveArray.subscribe(array =>
+		{
+			if (array[0] === 1)
+			{
+				done();
+			}
+		});
+		reactiveArray.push(1);
+	});
+
+	it('reactive copy within', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -26,7 +68,7 @@ describe('reactive array', () =>
 		reactiveArray.copyWithin(0, 2);
 	});
 
-	it('mutable fill', done =>
+	it('reactive fill', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -40,7 +82,7 @@ describe('reactive array', () =>
 		reactiveArray.fill(1);
 	});
 
-	it('mutable pop', done =>
+	it('reactive pop', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -54,7 +96,7 @@ describe('reactive array', () =>
 		reactiveArray.pop();
 	});
 
-	it('mutable push', done =>
+	it('reactive push', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>();
 
@@ -68,7 +110,7 @@ describe('reactive array', () =>
 		reactiveArray.push(1);
 	});
 
-	it('mutable reverse', done =>
+	it('reactive reverse', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -82,7 +124,7 @@ describe('reactive array', () =>
 		reactiveArray.reverse();
 	});
 
-	it('mutable shift', done =>
+	it('reactive shift', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -96,7 +138,7 @@ describe('reactive array', () =>
 		reactiveArray.shift();
 	});
 
-	it('mutable sort', done =>
+	it('reactive sort', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(3, 2, 1);
 
@@ -110,7 +152,7 @@ describe('reactive array', () =>
 		reactiveArray.sort();
 	});
 
-	it('mutable splice', done =>
+	it('reactive splice', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
@@ -124,7 +166,7 @@ describe('reactive array', () =>
 		reactiveArray.splice(0, 1);
 	});
 
-	it('mutable unshift', done =>
+	it('reactive unshift', done =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(2, 3);
 

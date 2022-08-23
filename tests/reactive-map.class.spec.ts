@@ -12,7 +12,7 @@ describe('reactive map', () =>
 		expect(reactiveMap.has(1)).to.be.true;
 	});
 
-	it('mutable set', done =>
+	it('reactive set', done =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
@@ -26,7 +26,7 @@ describe('reactive map', () =>
 		reactiveMap.set(1, 1);
 	});
 
-	it('mutable delete', done =>
+	it('reactive delete', done =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 
@@ -40,7 +40,7 @@ describe('reactive map', () =>
 		reactiveMap.delete(1);
 	});
 
-	it('mutable clear', done =>
+	it('reactive clear', done =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 

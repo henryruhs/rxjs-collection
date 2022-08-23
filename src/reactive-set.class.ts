@@ -1,5 +1,5 @@
 import { Observable, Subject, Subscription } from 'rxjs';
-import { reactivate } from './reactive.helper';
+import { reactive } from './reactive.helper';
 import { ReactiveCollection } from './reactive.interface';
 
 export class ReactiveSet<Type> extends Set<Type> implements ReactiveCollection<Set<Type>>
@@ -22,7 +22,7 @@ export class ReactiveSet<Type> extends Set<Type> implements ReactiveCollection<S
 	}
 }
 
-reactivate(ReactiveSet, Set,
+reactive(ReactiveSet, Set,
 [
 	'add',
 	'delete',

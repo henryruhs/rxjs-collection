@@ -1,5 +1,5 @@
 import { Observable, Subject, Subscription } from 'rxjs';
-import { reactivate } from './reactive.helper';
+import { reactive } from './reactive.helper';
 import { ReactiveCollection } from './reactive.interface';
 
 export class ReactiveWeakSet<Type extends object> extends WeakSet<Type> implements ReactiveCollection<WeakSet<Type>>
@@ -22,7 +22,7 @@ export class ReactiveWeakSet<Type extends object> extends WeakSet<Type> implemen
 	}
 }
 
-reactivate(ReactiveWeakSet, WeakSet,
+reactive(ReactiveWeakSet, WeakSet,
 [
 	'add',
 	'delete'

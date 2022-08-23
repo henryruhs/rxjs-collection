@@ -1,13 +1,34 @@
-import { Subject } from 'rxjs';
+import { WithSubject } from './reactive.interface';
 
-export function reactivate(Reactive : Function, Base : Function, methods : string[]) : void
+export function reactive(Reactive : Function, Base : Function, methods : string[]) : void
 {
 	methods.map(method =>
 	{
 		(Reactive as FunctionConstructor).prototype[method] = function(...args : string[])
 		{
 			((Base as FunctionConstructor).prototype[method] as Function).apply(this, args);
-			(this as { store : Subject<Function>}).store?.next(this);
+			(this as WithSubject).store?.next(this);
 		};
+	});
+}
+
+export function hyperactive<Collection extends object>(collection : Collection) : Collection
+{
+	return new Proxy(collection,
+	{
+		defineProperty(that : Collection, property : string | symbol, value : unknown)
+		{
+			const action : boolean = Reflect.defineProperty(that, property, value);
+
+			(that as WithSubject).store?.next(that as Function);
+			return action;
+		},
+		deleteProperty(that : Collection, property : string | symbol) : boolean
+		{
+			const action : boolean = Reflect.deleteProperty(that, property);
+
+			(that as WithSubject).store?.next(that as Function);
+			return action;
+		}
 	});
 }

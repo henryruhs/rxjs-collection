@@ -12,7 +12,7 @@ describe('reactive set', () =>
 		expect(reactiveSet.has(1)).to.be.true;
 	});
 
-	it('mutable add', done =>
+	it('reactive add', done =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>();
 
@@ -26,7 +26,7 @@ describe('reactive set', () =>
 		reactiveSet.add(1);
 	});
 
-	it('mutable delete', done =>
+	it('reactive delete', done =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
@@ -40,7 +40,7 @@ describe('reactive set', () =>
 		reactiveSet.delete(1);
 	});
 
-	it('mutable clear', done =>
+	it('reactive clear', done =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
