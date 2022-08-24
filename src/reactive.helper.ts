@@ -16,7 +16,7 @@ export function hyperactive<Collection extends object>(collection : Collection) 
 {
 	return new Proxy(collection,
 	{
-		defineProperty(that : Collection, property : string | symbol, value : unknown)
+		defineProperty(that : Collection, property : string | symbol, value : unknown) : boolean
 		{
 			const action : boolean = Reflect.defineProperty(that, property, value);
 
