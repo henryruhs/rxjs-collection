@@ -1,7 +1,7 @@
 {
 	"name": "rxjs-collection",
 	"description": "RXJS enhanced Array, Map, WeakMap, Set and WeakSet",
-	"version": "2.1.0",
+	"version": "2.1.1",
 	"license": "MIT",
 	"type": "module",
 	"keywords":
@@ -56,6 +56,6 @@
 		"fix": "npm run lint -- --fix",
 		"test": "mocha"
 	},
-	"main": "cjs.js",
-	"module": "esm.js"
+	"main": "index.cjs",
+	"module": "index.mjs"
 }
