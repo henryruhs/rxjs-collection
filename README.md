@@ -3,7 +3,7 @@ RXJS Collection
 
 > RXJS enhanced Array, Map, WeakMap, Set and WeakSet.
 
-[![Build Status](https://img.shields.io/github/workflow/status/henryruhs/rxjs-collection/ci.svg)](https://github.com/henryruhs/rxjs-collection/actions?query=workflow:ci)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/henryruhs/rxjs-collection/ci.yml.svg?branch=master)](https://github.com/henryruhs/rxjs-collection/actions?query=workflow:ci)
 [![Coverage Status](https://coveralls.io/repos/github/henryruhs/rxjs-collection/badge.svg)](https://coveralls.io/github/henryruhs/rxjs-collection)
 [![NPM Version](https://img.shields.io/npm/v/rxjs-collection.svg)](https://npmjs.com/package/rxjs-collection)
 [![License](https://img.shields.io/npm/l/rxjs-collection.svg)](https://npmjs.com/package/rxjs-collection)
