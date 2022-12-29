@@ -9,7 +9,7 @@ describe('reactive array', () =>
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
 		expect(reactiveArray).to.be.instanceof(Array);
-		expect(reactiveArray[0]).to.be.equal(1);
+		expect(reactiveArray.at(0)).to.be.equal(1);
 	});
 
 	it('hyperactive define property', done =>
@@ -18,7 +18,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 1)
+			if (array.at(0) === 1)
 			{
 				done();
 			}
@@ -32,7 +32,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (!array[0])
+			if (!array.at(0))
 			{
 				done();
 			}
@@ -46,7 +46,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 1)
+			if (array.at(0) === 1)
 			{
 				done();
 			}
@@ -60,7 +60,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 3)
+			if (array.at(0) === 3)
 			{
 				done();
 			}
@@ -74,7 +74,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[2] === 1)
+			if (array.at(2) === 1)
 			{
 				done();
 			}
@@ -88,7 +88,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[array.length - 1] === 2)
+			if (array.at(-1) === 2)
 			{
 				done();
 			}
@@ -102,7 +102,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 1)
+			if (array.at(0) === 1)
 			{
 				done();
 			}
@@ -116,7 +116,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 3)
+			if (array.at(0) === 3)
 			{
 				done();
 			}
@@ -130,7 +130,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 2)
+			if (array.at(0) === 2)
 			{
 				done();
 			}
@@ -144,7 +144,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 1)
+			if (array.at(0) === 1)
 			{
 				done();
 			}
@@ -158,7 +158,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 2)
+			if (array.at(0) === 2)
 			{
 				done();
 			}
@@ -172,7 +172,7 @@ describe('reactive array', () =>
 
 		reactiveArray.subscribe(array =>
 		{
-			if (array[0] === 1)
+			if (array.at(0) === 1)
 			{
 				done();
 			}
