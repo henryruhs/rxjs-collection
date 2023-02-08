@@ -1,4 +1,4 @@
-import { timer } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveArray, hyperactive } from '../src';
 
@@ -16,13 +16,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>());
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray[0] = 1;
 	});
 
@@ -30,13 +30,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>(1, 2, 3));
 
-		reactiveArray.subscribe(array =>
-		{
-			if (!array.at(0))
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => !array.at(0))
+			)
+			.subscribe(() => done());
+
 		delete reactiveArray[0];
 	});
 
@@ -44,13 +44,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = hyperactive(new ReactiveArray<number>());
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.push(1);
 	});
 
@@ -58,13 +58,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 3)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 3)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.copyWithin(0, 2);
 	});
 
@@ -72,13 +72,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(2) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(2) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.fill(1);
 	});
 
@@ -86,13 +86,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(-1) === 2)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(-1) === 2)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.pop();
 	});
 
@@ -100,13 +100,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>();
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.push(1);
 	});
 
@@ -114,13 +114,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 3)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 3)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.reverse();
 	});
 
@@ -128,13 +128,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 2)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 2)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.shift();
 	});
 
@@ -142,13 +142,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(3, 2, 1);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.sort();
 	});
 
@@ -156,13 +156,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(1, 2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 2)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 2)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.splice(0, 1);
 	});
 
@@ -170,13 +170,13 @@ describe('reactive array', () =>
 	{
 		const reactiveArray : ReactiveArray<number> = new ReactiveArray<number>(2, 3);
 
-		reactiveArray.subscribe(array =>
-		{
-			if (array.at(0) === 1)
-			{
-				done();
-			}
-		});
+		reactiveArray
+			.asObservable()
+			.pipe(
+				filter(array => array.at(0) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveArray.unshift(1);
 	});
 

@@ -1,4 +1,4 @@
-import { timer } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveWeakMap } from '../src';
 
@@ -18,13 +18,13 @@ describe('reactive weak map', () =>
 		const object : object = {};
 		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>();
 
-		reactiveWeakMap.subscribe(weakMap =>
-		{
-			if (weakMap.get(object) === 1)
-			{
-				done();
-			}
-		});
+		reactiveWeakMap
+			.asObservable()
+			.pipe(
+				filter(weakMap => weakMap.get(object) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveWeakMap.set(object, 1);
 	});
 
@@ -33,13 +33,13 @@ describe('reactive weak map', () =>
 		const object : object = {};
 		const reactiveWeakMap : ReactiveWeakMap<object, number> = new ReactiveWeakMap<object, number>([ [ object, 1 ] ]);
 
-		reactiveWeakMap.subscribe(weakMap =>
-		{
-			if (!weakMap.has(object))
-			{
-				done();
-			}
-		});
+		reactiveWeakMap
+			.asObservable()
+			.pipe(
+				filter(weakMap => !weakMap.has(object))
+			)
+			.subscribe(() => done());
+
 		reactiveWeakMap.delete(object);
 	});
 

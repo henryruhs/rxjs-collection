@@ -1,4 +1,4 @@
-import { timer } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveMap } from '../src';
 
@@ -16,13 +16,13 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>();
 
-		reactiveMap.subscribe(map =>
-		{
-			if (map.get(1) === 1)
-			{
-				done();
-			}
-		});
+		reactiveMap
+			.asObservable()
+			.pipe(
+				filter(map => map.get(1) === 1)
+			)
+			.subscribe(() => done());
+
 		reactiveMap.set(1, 1);
 	});
 
@@ -30,13 +30,13 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 
-		reactiveMap.subscribe(map =>
-		{
-			if (!map.has(1))
-			{
-				done();
-			}
-		});
+		reactiveMap
+			.asObservable()
+			.pipe(
+				filter(map => !map.has(1))
+			)
+			.subscribe(() => done());
+
 		reactiveMap.delete(1);
 	});
 
@@ -44,13 +44,13 @@ describe('reactive map', () =>
 	{
 		const reactiveMap : ReactiveMap<number, number> = new ReactiveMap<number, number>([ [ 1, 1 ] ]);
 
-		reactiveMap.subscribe(map =>
-		{
-			if (!map.has(1))
-			{
-				done();
-			}
-		});
+		reactiveMap
+			.asObservable()
+			.pipe(
+				filter(map => !map.has(1))
+			)
+			.subscribe(() => done());
+
 		reactiveMap.clear();
 	});
 

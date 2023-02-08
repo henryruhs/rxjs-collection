@@ -1,4 +1,4 @@
-import { timer } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveSet } from '../src';
 
@@ -16,13 +16,13 @@ describe('reactive set', () =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>();
 
-		reactiveSet.subscribe(set =>
-		{
-			if (set.has(1))
-			{
-				done();
-			}
-		});
+		reactiveSet
+			.asObservable()
+			.pipe(
+				filter(set => set.has(1))
+			)
+			.subscribe(() => done());
+
 		reactiveSet.add(1);
 	});
 
@@ -30,13 +30,13 @@ describe('reactive set', () =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
-		reactiveSet.subscribe(set =>
-		{
-			if (!set.has(1))
-			{
-				done();
-			}
-		});
+		reactiveSet
+			.asObservable()
+			.pipe(
+				filter(set => !set.has(1))
+			)
+			.subscribe(() => done());
+
 		reactiveSet.delete(1);
 	});
 
@@ -44,13 +44,13 @@ describe('reactive set', () =>
 	{
 		const reactiveSet : ReactiveSet<number> = new ReactiveSet<number>([ 1 ]);
 
-		reactiveSet.subscribe(set =>
-		{
-			if (!set.has(1))
-			{
-				done();
-			}
-		});
+		reactiveSet
+			.asObservable()
+			.pipe(
+				filter(set => !set.has(1))
+			)
+			.subscribe(() => done());
+
 		reactiveSet.clear();
 	});
 

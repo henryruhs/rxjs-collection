@@ -1,4 +1,4 @@
-import { timer } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
 import { ReactiveWeakSet } from '../src';
 
@@ -18,13 +18,13 @@ describe('reactive weak set', () =>
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>();
 
-		reactiveWeakSet.subscribe(weakSet =>
-		{
-			if (weakSet.has(object))
-			{
-				done();
-			}
-		});
+		reactiveWeakSet
+			.asObservable()
+			.pipe(
+				filter(weakSet => weakSet.has(object))
+			)
+			.subscribe(() => done());
+
 		reactiveWeakSet.add(object);
 	});
 
@@ -33,13 +33,13 @@ describe('reactive weak set', () =>
 		const object : object = {};
 		const reactiveWeakSet : ReactiveWeakSet<object> = new ReactiveWeakSet<object>([ object ]);
 
-		reactiveWeakSet.subscribe(weakSet =>
-		{
-			if (!weakSet.has(object))
-			{
-				done();
-			}
-		});
+		reactiveWeakSet
+			.asObservable()
+			.pipe(
+				filter(weakSet => !weakSet.has(object))
+			)
+			.subscribe(() => done());
+
 		reactiveWeakSet.delete(object);
 	});
 
