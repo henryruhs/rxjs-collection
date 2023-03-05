@@ -51,6 +51,6 @@ describe('reactive weak map', () =>
 		reactiveWeakMap.asObservable().subscribe(() => done('error'));
 		reactiveWeakMap.unsubscribe();
 		reactiveWeakMap.set(object, 1);
-		timer(100).subscribe(done);
+		timer(100).subscribe(() => done());
 	});
 });

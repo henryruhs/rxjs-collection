@@ -51,6 +51,6 @@ describe('reactive weak set', () =>
 		reactiveWeakSet.asObservable().subscribe(() => done('error'));
 		reactiveWeakSet.unsubscribe();
 		reactiveWeakSet.add(object);
-		timer(100).subscribe(done);
+		timer(100).subscribe(() => done());
 	});
 });

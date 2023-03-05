@@ -61,6 +61,6 @@ describe('reactive map', () =>
 		reactiveMap.asObservable().subscribe(() => done('error'));
 		reactiveMap.unsubscribe();
 		reactiveMap.set(1, 1);
-		timer(100).subscribe(done);
+		timer(100).subscribe(() => done());
 	});
 });

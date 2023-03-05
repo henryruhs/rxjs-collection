@@ -61,6 +61,6 @@ describe('reactive set', () =>
 		reactiveSet.asObservable().subscribe(() => done('error'));
 		reactiveSet.unsubscribe();
 		reactiveSet.add(1);
-		timer(100).subscribe(done);
+		timer(100).subscribe(() => done());
 	});
 });

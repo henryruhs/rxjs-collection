@@ -187,6 +187,6 @@ describe('reactive array', () =>
 		reactiveArray.asObservable().subscribe(() => done('error'));
 		reactiveArray.unsubscribe();
 		reactiveArray.push(1);
-		timer(100).subscribe(done);
+		timer(100).subscribe(() => done());
 	});
 });
