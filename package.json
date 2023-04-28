@@ -35,7 +35,7 @@
 	"devDependencies":
 	{
 		"rxjs": "^7",
-		"@isnotdefined/eslint-config": "9.3.1",
+		"@isnotdefined/eslint-config": "9.4.0",
 		"@types/chai": "4.3.4",
 		"@types/mocha": "10.0.1",
 		"@types/node": "18.16.2",
