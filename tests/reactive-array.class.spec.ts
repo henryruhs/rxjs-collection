@@ -1,5 +1,6 @@
 import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
+
 import { ReactiveArray, hyperactive } from '../src';
 
 describe('reactive array', () =>

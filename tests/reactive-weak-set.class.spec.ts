@@ -1,5 +1,6 @@
 import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
+
 import { ReactiveWeakSet } from '../src';
 
 describe('reactive weak set', () =>

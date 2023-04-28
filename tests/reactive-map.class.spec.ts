@@ -1,5 +1,6 @@
 import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
+
 import { ReactiveMap } from '../src';
 
 describe('reactive map', () =>

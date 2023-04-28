@@ -1,5 +1,6 @@
 import { filter, timer } from 'rxjs';
 import { expect } from 'chai';
+
 import { ReactiveSet } from '../src';
 
 describe('reactive set', () =>
