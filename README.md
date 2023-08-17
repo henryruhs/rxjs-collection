@@ -42,4 +42,4 @@ reactiveMap.unsubscribe();
 Documentation
 -------------
 
-Read the [documenation](https://henryruhs.gitbook.io/rxjs-collection) for a deep dive.
+Read the [documentation](https://henryruhs.gitbook.io/rxjs-collection) for a deep dive.
