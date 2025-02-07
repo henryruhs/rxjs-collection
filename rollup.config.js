@@ -24,7 +24,14 @@ export default
 		{
 			targets: 'build'
 		}),
-		typescript(),
+		typescript(
+		{
+			compilerOptions:
+			{
+				rootDir: 'src',
+				declaration: true
+			}
+		}),
 		copy(
 		{
 			targets:
